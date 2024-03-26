@@ -8,28 +8,24 @@ return new class extends Migration
 {
     /**
      * Run the migrations.
-     *
-     * @return void
      */
     public function up()
     {
-        Schema::create('kasirs_produk', function (Blueprint $table) {
+        Schema::create('detailpenjualan', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('ProdukId');
-            $table->string('NamaProduk');
-            $table->decimal('Harga', 10, 2);
-            $table->integer('Stok');
+            $table->foreignId('penjualan_id');
+            $table->integer('jumlah_produk');
+            $table->float('subtotal',10,2);
             $table->timestamps();
+            $table->foreignId('produk_id');
         });
     }
 
     /**
      * Reverse the migrations.
-     *
-     * @return void
      */
-    public function down()
+    public function down(): void
     {
-        Schema::dropIfExists('kasirs_produk');
+        Schema::dropIfExists('detailpenjualan');
     }
 };

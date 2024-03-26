@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PelangganController;
+use App\Http\Controllers\LoginController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,3 +16,5 @@ use App\Http\Controllers\PelangganController;
 */
 
 Route::get('/',[PelangganController::class, 'login']);
+Route::get('/register',[LoginController::class, 'index']);
+Route::post('/register/store',[LoginController::class, 'store'])->name('register.store');

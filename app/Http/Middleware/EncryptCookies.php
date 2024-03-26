@@ -2,16 +2,16 @@
 
 namespace App\Http\Middleware;
 
-use Illuminate\Cookie\Middleware\EncryptCookies as Middleware;
+use Illuminate\Auth\Middleware\Authenticate as Middleware;
+use Illuminate\Http\Request;
 
-class EncryptCookies extends Middleware
+class Authenticate extends Middleware
 {
     /**
-     * The names of the cookies that should not be encrypted.
-     *
-     * @var array<int, string>
+     * Get the path the user should be redirected to when they are not authenticated.
      */
-    protected $except = [
-        //
-    ];
+    protected function redirectTo(Request $request): ?string
+    {
+        return $request->expectsJson() ? null : route('login');
+    }
 }
